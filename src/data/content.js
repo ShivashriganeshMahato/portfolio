@@ -1,5 +1,5 @@
 export const profile = {
-  name: "Shivashriganesh Mahato",
+  name: "Shivashriganesh P. Mahato",
   shortName: "Shiva Mahato",
   title: "PhD Student, Computer & Information Science",
   institution: "University of Pennsylvania",

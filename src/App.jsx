@@ -132,7 +132,7 @@ function Portfolio() {
         <NeuronCanvas lightOpacity={0.52} darkOpacity={0.72} />
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse 46% 100% at 50% 50%, var(--bg) 40%, transparent 78%)",
+          background: "radial-gradient(ellipse 46% 100% at 50% 50%, var(--bg) 48%, transparent 82%)",
         }} />
       </div>
 
@@ -229,9 +229,39 @@ function Portfolio() {
           </div>
         </Row>
 
-        <div style={{ marginTop: "48px", paddingTop: "20px", borderTop: "1px solid var(--border)" }}>
-          <p style={{ fontSize: "14px", color: "var(--muted)" }}>
-            {profile.name} · {profile.location} · {profile.email}
+        <div style={{ marginTop: "48px", display: "flex", flexDirection: "column", alignItems: "center", gap: "28px" }}>
+          <a
+            href={profile.links.cv}
+            download
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              padding: "10px 22px",
+              border: "1px solid var(--border)",
+              borderRadius: "6px",
+              fontSize: "15px", fontWeight: 500,
+              color: "var(--muted)",
+              background: "var(--bg2)",
+              textDecoration: "none",
+              transition: "color 0.15s, border-color 0.15s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--accent)";
+              e.currentTarget.style.borderColor = "var(--accent)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--muted)";
+              e.currentTarget.style.borderColor = "var(--border)";
+            }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download CV
+          </a>
+          <p style={{ fontSize: "13px", color: "var(--muted)" }}>
+            © {profile.name}
           </p>
         </div>
       </div>
