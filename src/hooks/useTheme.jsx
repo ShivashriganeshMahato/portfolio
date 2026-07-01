@@ -4,6 +4,8 @@ const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
+    const param = new URLSearchParams(window.location.search).get("theme");
+    if (param === "dark" || param === "light") return param;
     const saved = localStorage.getItem("theme");
     return saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   });

@@ -88,7 +88,7 @@ function ScrollBox({ maxHeight, children }) {
     position: "absolute", [pos]: "0", right: "0",
     background: "none", border: "none", cursor: "pointer",
     color: "var(--accent)", opacity: 0.7, padding: "2px 0",
-    fontSize: "9px", lineHeight: 1, zIndex: 2,
+    fontSize: "13px", lineHeight: 1, zIndex: 2,
     transition: "opacity 0.15s",
   });
 
@@ -111,14 +111,14 @@ function ScrollBox({ maxHeight, children }) {
         <button style={arrowStyle("bottom")} onClick={() => nudge(1)}
           onMouseEnter={e => e.currentTarget.style.opacity = 1}
           onMouseLeave={e => e.currentTarget.style.opacity = 0.55}>
-          ▼
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="1,1 6,7 11,1"/></svg>
         </button>
       )}
       {canUp && (
         <button style={arrowStyle("top")} onClick={() => nudge(-1)}
           onMouseEnter={e => e.currentTarget.style.opacity = 1}
           onMouseLeave={e => e.currentTarget.style.opacity = 0.7}>
-          ▲
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="1,7 6,1 11,7"/></svg>
         </button>
       )}
     </div>
