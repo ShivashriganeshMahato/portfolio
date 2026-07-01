@@ -147,7 +147,7 @@ function Portfolio() {
       {/* Fade overlay stays locked to viewport, independent of parallax */}
       <div style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 46% 100% at 50% 50%, var(--bg) 48%, transparent 82%)",
+        background: "radial-gradient(ellipse min(720px, 100vw) 100% at 50% 50%, var(--bg) 50%, transparent 86%)",
       }} />
 
       <div onClick={(e) => e.stopPropagation()} style={{ position: "relative", zIndex: 1, maxWidth: "680px", margin: "0 auto", padding: "22px 32px 80px" }}>
