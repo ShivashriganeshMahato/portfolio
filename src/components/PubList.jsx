@@ -11,7 +11,7 @@ export default function PubList({ initialShow = 2 }) {
       {shown.map((p, i) => (
         <div key={i} style={{ marginBottom: "20px" }}>
           <p>
-            <a href={p.url} className="pub-title">{p.title}</a>
+            <a href={p.url} className="pub-title" target="_blank" rel="noopener noreferrer">{p.title}</a>
           </p>
           <p className="pub-authors" style={{ marginTop: "3px" }}>{p.authors}</p>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "3px", flexWrap: "wrap" }}>

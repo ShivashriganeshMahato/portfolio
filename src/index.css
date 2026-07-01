@@ -48,11 +48,16 @@ body { transition: background 0.2s, color 0.2s; }
 a { color: inherit; text-decoration: none; }
 p { margin: 0; }
 
+/* bio inline links */
+.bio a, .news-text a, .exp-detail a { color: var(--accent); text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color 0.15s; }
+.bio a:hover, .news-text a:hover, .exp-detail a:hover { text-decoration-color: var(--accent); }
+
 /* publication list indent */
 .pub-authors { color: var(--muted); font-size: 15px; }
 .pub-venue   { color: var(--muted); font-size: 15px; font-style: italic; }
 .pub-title   { font-size: 17px; font-weight: 500; color: var(--text); line-height: 1.45; }
 .pub-title:hover { color: var(--accent); }
 
+/* glass scrollbar */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }

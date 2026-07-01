@@ -126,15 +126,29 @@ function ScrollBox({ maxHeight, children }) {
 }
 
 function Portfolio() {
+  const bgRef = useRef(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (bgRef.current) {
+        bgRef.current.style.transform = `translateY(${-window.scrollY * 0.14}px)`;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--text)", position: "relative" }}>
-      <div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
+      {/* Canvas extends 500px below viewport to cover parallax drift */}
+      <div ref={bgRef} style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: "-500px", zIndex: 0 }}>
         <NeuronCanvas lightOpacity={0.52} darkOpacity={0.72} />
-        <div style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse 46% 100% at 50% 50%, var(--bg) 48%, transparent 82%)",
-        }} />
       </div>
+      {/* Fade overlay stays locked to viewport, independent of parallax */}
+      <div style={{
+        position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 46% 100% at 50% 50%, var(--bg) 48%, transparent 82%)",
+      }} />
 
       <div onClick={(e) => e.stopPropagation()} style={{ position: "relative", zIndex: 1, maxWidth: "680px", margin: "0 auto", padding: "22px 32px 80px" }}>
         <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "16px" }}>
@@ -167,9 +181,8 @@ function Portfolio() {
         <Divider />
 
         <Row icon={ICONS.about} label="About">
-          <p style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--text2)" }}>
-            {profile.bio}
-          </p>
+          <p className="bio" style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--text2)" }}
+            dangerouslySetInnerHTML={{ __html: profile.bio }} />
         </Row>
 
         <Divider />
@@ -184,7 +197,8 @@ function Portfolio() {
                 }}>
                   {n.date}
                 </span>
-                <p style={{ fontSize: "16px", color: "var(--text2)", lineHeight: 1.58 }}>{n.text}</p>
+                <p className="news-text" style={{ fontSize: "16px", color: "var(--text2)", lineHeight: 1.58 }}
+                  dangerouslySetInnerHTML={{ __html: n.text }} />
               </div>
             ))}
           </ScrollBox>
@@ -206,7 +220,11 @@ function Portfolio() {
                   <p style={{ fontSize: "17px", fontWeight: 500 }}>{e.degree}</p>
                   <span style={{ fontSize: "13px", color: "var(--muted)", whiteSpace: "nowrap" }}>{e.period}</span>
                 </div>
-                <p style={{ fontSize: "15px", color: "var(--muted)" }}>{e.institution} · {e.detail}</p>
+                <p style={{ fontSize: "15px", color: "var(--muted)" }}>
+                  {e.institution}{e.advisor ? ` · Advisor: ${e.advisor}` : ""}
+                </p>
+                {e.detail && <p style={{ fontSize: "13px", color: "var(--muted)", marginTop: "1px" }}>{e.detail}</p>}
+                {e.note  && <p style={{ fontSize: "13px", color: "var(--muted)", marginTop: "1px" }}>{e.note}</p>}
               </div>
             ))}
           </div>
@@ -215,18 +233,20 @@ function Portfolio() {
         <Divider />
 
         <Row icon={ICONS.experience} label="Experience">
-          <div>
+          <ScrollBox maxHeight="220px">
             {experience.map((e, i) => (
               <div key={i} style={{ marginBottom: "13px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "10px" }}>
                   <p style={{ fontSize: "17px", fontWeight: 500 }}>{e.title}</p>
                   <span style={{ fontSize: "13px", color: "var(--muted)", whiteSpace: "nowrap" }}>{e.period}</span>
                 </div>
-                <p style={{ fontSize: "15px", color: "var(--muted)" }}>{e.org}</p>
-                <p style={{ fontSize: "14px", color: "var(--muted)", lineHeight: 1.5, marginTop: "1px" }}>{e.detail}</p>
+                <p style={{ fontSize: "15px", color: "var(--muted)" }}>
+                  {e.org}{e.location ? ` · ${e.location}` : ""}
+                </p>
+                {e.detail && <p className="exp-detail" style={{ fontSize: "13px", color: "var(--muted)", marginTop: "2px" }} dangerouslySetInnerHTML={{ __html: e.detail }} />}
               </div>
             ))}
-          </div>
+          </ScrollBox>
         </Row>
 
         <div style={{ marginTop: "48px", display: "flex", flexDirection: "column", alignItems: "center", gap: "28px" }}>
