@@ -156,16 +156,15 @@ function Portfolio() {
         </div>
 
         <div style={{ display: "flex", gap: "20px", alignItems: "center", marginBottom: "26px" }}>
-          <div style={{
-            width: 78, height: 78, borderRadius: "50%", flexShrink: 0,
-            background: "var(--bg2)",
-            border: "2px solid var(--border)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: "22px", fontWeight: 700, color: "var(--muted)",
-            letterSpacing: "-0.02em",
-          }}>
-            SM
-          </div>
+          <img
+            src="/shiva1.jpg"
+            alt="Shivashriganesh P. Mahato"
+            style={{
+              width: 120, height: 148, borderRadius: "8px", flexShrink: 0,
+              objectFit: "cover", objectPosition: "center 18%",
+              border: "2px solid var(--border)",
+            }}
+          />
           <div>
             <h1 style={{ fontSize: "26px", fontWeight: 700, letterSpacing: "-0.025em", marginBottom: "2px" }}>
               {profile.name}
