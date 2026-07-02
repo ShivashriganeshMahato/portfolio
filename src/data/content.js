@@ -14,7 +14,7 @@ export const profile = {
     scholar: "https://scholar.google.com/citations?user=HC5i3HCLfycC",
     twitter: "https://x.com/shivashriganesh",
     linkedin: "https://www.linkedin.com/in/shivashriganesh-mahato-198026178/",
-    cv: "/cv.pdf",
+    cv: `${import.meta.env.BASE_URL}cv.pdf`,
   },
 };
 

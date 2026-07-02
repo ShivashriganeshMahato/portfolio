@@ -157,7 +157,7 @@ function Portfolio() {
 
         <div style={{ display: "flex", gap: "20px", alignItems: "center", marginBottom: "26px" }}>
           <img
-            src="/shiva1.jpg"
+            src={`${import.meta.env.BASE_URL}shiva1.jpg`}
             alt="Shivashriganesh P. Mahato"
             style={{
               width: 120, height: 148, borderRadius: "8px", flexShrink: 0,
