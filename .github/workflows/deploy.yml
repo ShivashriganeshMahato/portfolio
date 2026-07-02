@@ -24,7 +24,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npm run build -- --base=/portfolio/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
