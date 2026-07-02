@@ -251,7 +251,8 @@ function Portfolio() {
         <div style={{ marginTop: "48px", display: "flex", flexDirection: "column", alignItems: "center", gap: "28px" }}>
           <a
             href={profile.links.cv}
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
               padding: "10px 22px",
